@@ -145,19 +145,11 @@
                     <span data-role="view-title"></span>
 				</div>
 			</header>
-            <div id="cardsViewContent" data-role="content">
-				<!-- List of cards -->
-                <ul class="cardListWrapper" data-role="listview" data-style="inset" data-type="group">
-                    <li>
-                        <ul id="cardsList" data-role="listview" data-bind="source: cards" data-template="cardsListTemplate">
-                        </ul>
-                    </li>
-                </ul>
-			</div>
+           
 		</div>
         
         <!-- ADD Card View -->
-        <div data-role="view" id="addCardView" data-title="Add Card" data-show="focusCardNumber">
+        <div data-role="view" id="addCardView" data-title="Add Beer" data-show="focusCardNumber">
 			<div data-role="header">
 				<div data-role="navbar">
 					<a href="#cardsView" data-role="button" data-align="left">Cancel</a>
@@ -166,23 +158,12 @@
 				</div>
 			</div>
             <div data-role="content">
-                <div class="addCardLogo clear">
-                    <div class="cardPicture">
-                    </div>
-                    <span class="addCardLogoText">Create New Beer Card</span>
-                </div>
-                <ul class="addNewCardWrapper" data-role="listview" data-style="inset">
-    				<li>
-    					<label for="cardNumberField">Card Number </label>
-    					<input type="number" id="cardNumberField" min="3" max="10" maxlength="10" maxlength="9"/>
-    				</li>
-    			</ul>
-    			<div id="addNewCardErrorLog"></div>
+                
             </div>
 		</div>
         
         <!-- Single Card page -->
-		<div data-role="view" id="singleCardView" data-style="inset" data-title="Card" data-show="singleCardShow" data-model="singleCardViewModel">
+		<div data-role="view" id="singleCardView" data-style="inset" data-title="Beer" data-show="singleCardShow" data-model="singleCardViewModel">
 			<header data-role="header" data-id="jitterz-default-header">
 				<div data-role="navbar">
 					<a class="nav-button" data-role="backbutton" data-align="left">Back</a>
@@ -193,21 +174,7 @@
 			<div id="cardViewContent" data-role="content" class="km-insetcontent" data-style="inset">
 				<div id="singleCardContainer" class="clear">
 					<div id="cardFront" class="cardStyle silver" >
-						<div class="clear">
-							<div class="iconContainer">
-								<div class="icon"></div>
-							</div>
-							<div class="bonusContainer clear">
-								<span class="bonusPoints" data-bind="text: cardAmount"></span>
-								<div class="dateLine">
-									<span>as of</span>
-									<span data-bind="text: currentDate"></span>
-								</div>
-							</div>
-						</div>
-						<div class="amountLine">
-							<div class="cardNumberLine" data-bind="text: cardId"></div>
-						</div>
+						
 					</div>
 					<div id="cardBack" class="cardStyle clear silver">
 						<img id="barcodeImage" data-bind='attr: {src:barcodeUrl}' alt="Shop Card Id"/>

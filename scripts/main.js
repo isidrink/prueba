@@ -183,21 +183,22 @@ function storesShow(e) {
                         new google.maps.Point(0,202),
                         new google.maps.Point(0, 32));
 
-                        var shape = {
-                            coord: [1, 1, 1, 20, 18, 20, 18 , 1],
-                            type: 'poly'
-                        };
+                       
                         //for (var i = 0; i < locations.length; i++) {
                           var myLatLng = new google.maps.LatLng(41.376293,2.149218);
                           var marker = new google.maps.Marker({
                               position: myLatLng,
                               map: mapElem,
+                              animation: google.maps.Animation.DROP,
                               icon: image,
-                              shape: shape,
                               title: "Barceloa Beer Festival",
                               zIndex: google.maps.Marker.MAX_ZINDEX
                           });
+                          
                         //}
+                        var j = i + 1;
+                          marker.setTitle(j.toString());
+                          attachSecretMessage(marker, i);
 /*
                         // Add 5 markers to the map at random locations
                         var southWest = new google.maps.LatLng(-31.203405,125.244141);
