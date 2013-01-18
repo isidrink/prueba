@@ -57,7 +57,7 @@ function getBeerList() {
 	// alert(announcementData.items);
        
         $.getJSON(serviceURL + 'getbeers.php', function(data) {
-		$('#rewordsCardsList li').remove();
+		$('#announcements-listview li').remove();
                 //alert(JSON.stringify(data));
                 //alert(data);
                employees = data.items;
@@ -70,13 +70,13 @@ function getBeerList() {
                                           expireDate: "2013/12/06"
                                            
                                   });   */  
-                                announcementData.push({
+                                /*announcementData.push({
                                         title: employee.CERVESA, 
                                         description: employee.CERVESERA,
                                         url: "http://www.adapptalo.com/test/www/pics/beerimages/" + employee.IMAGEN
-                                });    
+                                }); */   
                     //$('#rewordsCardsList').append('<li>Pretty row '+index+'</li>');
-                       $('#rewordsCardsList').append('<li><a class="listReswardsCard clear" data-role="listview-link" href="rewardCard" data-cardId="${cardNumber}">'+
+                       $('#announcements-listview').append('<li><a class="listReswardsCard clear" data-role="listview-link" href="rewardCard" data-cardId="${cardNumber}">'+
                        '<div ><img class="cardPicture" id="pic" src="http://www.adapptalo.com/test/www/pics/beerimages/' + employee.IMAGEN + '"/></div>' +
                 
                     '<div class="cardInformationContainer"><span>' + employee.CERVESA + '</span>' +
@@ -84,7 +84,7 @@ function getBeerList() {
                     '<div class="expireDateText">'+ employee.CERVESERA +'</div></div><div class="clear"></div></a></li>');
                          
 		});
-		$('#rewordsCardsList').listview('refresh');
+		$('#announcements-listview').listview('refresh');
               
 	});
 }
@@ -185,15 +185,15 @@ function storesShow(e) {
 	};
 	iteration();
 }
-
-var announcementData = [
+var announcementData = [];
+/*var announcementData = [
 	{ title: "Holiday Drinks Are Here", description: "Enjoy your favorite holiday drinks, like Pumpkin Spice Lattes.", url: "images/holiday.png" },
 	{ title: "Register & Get Free Drinks", description: "Register any Jitterz card and start earning rewards like free drinks. Sign-up now.", url: "images/rewards.png" },
 	{ title: "Cheers to Another Year", description: "Raise a cup of bold and spicy Jitterz Anniversary Blend.", url: "images/cheers.png" },
     { title: "Hot Drinks Anytime", description: "Find and enjoy our, hot drinks anytime.", url: "images/hot-drink.png" },
 	{ title: "Friend and Love", description: "Get more for your friends.Get Love.", url: "images/love-friend.png" },
 	{ title: "Wide range of choice", description: "Raise a cup of bold and spicy Jitterz Anniversary Blend.", url: "images/best-coffee.png" }
-];
+];*/
 
 function announcementListViewTemplatesInit() {
 	$("#announcements-listview").kendoMobileListView({
