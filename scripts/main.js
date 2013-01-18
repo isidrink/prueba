@@ -111,14 +111,7 @@ function getPosition(handler) {
 
 function getLocations(position, handler) {
     
-        
-        $.getJSON('http://www.starbucks.com/api/location.ashx?&features=&lat=' + position.coords.latitude + '&long=' + position.coords.longitude + '&limit=10', function(data) {
-            alert(JSON.stringify(data));
-        }).error(function(error) {
-                alert("this is an "+error.message);
-        });
-        
-	$.getJSON("http://www.starbucks.com/api/location.ashx?&features=&lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&limit=10",
+     $.getJSON("http://www.starbucks.com/api/location.ashx?&features=&lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&limit=10",
 			  function(data) {
 				  var locations = [];
                                   
@@ -143,13 +136,6 @@ function getInitialCardsData(){
         localStorage.setItem("cards",initialCards);
     }
 }
-var beaches = [
-  ['Bondi Beach', -33.890542, 151.274856, 4],
-  ['Coogee Beach', -33.923036, 151.259052, 5],
-  ['Cronulla Beach', -34.028249, 151.157507, 3],
-  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  ['Maroubra Beach', -33.950198, 151.259302, 1]
-];
 
 
 function storesShow(e) {
@@ -190,8 +176,8 @@ function storesShow(e) {
 				title: "Your Location",
                 zIndex:google.maps.Marker.MAX_ZINDEX
 			});
-/*                        
-                        var pimImage = new google.maps.MarkerImage("../images/cofeeCup-sprite.png",
+                        
+                        var image = new google.maps.MarkerImage("images/beerCup-sprite.png",
                         new google.maps.Size(49, 49),
                         new google.maps.Point(0,202),
                         new google.maps.Point(0, 32));
@@ -211,7 +197,7 @@ function storesShow(e) {
                               zIndex: google.maps.Marker.MAX_ZINDEX
                           });
                         //}
-*/
+/*
                         // Add 5 markers to the map at random locations
                         var southWest = new google.maps.LatLng(-31.203405,125.244141);
                         var northEast = new google.maps.LatLng(-25.363882,131.044922);
@@ -220,11 +206,13 @@ function storesShow(e) {
                         var lngSpan = northEast.lng() - southWest.lng();
                         var latSpan = northEast.lat() - southWest.lat();
                         //for (var i = 0; i < 5; i++) {
-                           var location = new google.maps.LatLng(41.376293,2.149218);
-                          /*var location = new google.maps.LatLng(southWest.lat() + latSpan * Math.random(),
-                              southWest.lng() + lngSpan * Math.random());*/
+                          // var location = new google.maps.LatLng(41.376293,2.149218);
+                          var location = new google.maps.LatLng(southWest.lat() + latSpan * Math.random(),
+                              southWest.lng() + lngSpan * Math.random());
                           var marker = new google.maps.Marker({
                               position: location,
+                              icon: image,
+                              shape: shape,
                               title: "Barceloa Beer Festival",
                               map: mapElem
                           });
@@ -233,7 +221,7 @@ function storesShow(e) {
                           attachSecretMessage(marker, i);
                         //}
 
-
+*/
                         
 			if (cachedLocations.length > 0) {
 				setStiresViews(cachedLocations);
@@ -289,7 +277,7 @@ function setStiresViews(locations) {
 												new google.maps.Point(12, 35));*/
     
 
-     var pimImage = new google.maps.MarkerImage("../images/cofeeCup-sprite.png",
+     var pimImage = new google.maps.MarkerImage("images/cofeeCup-sprite.png",
       new google.maps.Size(49, 49),
       new google.maps.Point(0,202),
       new google.maps.Point(0, 32));
