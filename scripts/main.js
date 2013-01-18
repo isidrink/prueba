@@ -109,9 +109,18 @@ function getPosition(handler) {
 }
 
 function getLocations(position, handler) {
+    
+        
+        $.getJSON('http://www.starbucks.com/api/location.ashx?&features=&lat=' + position.coords.latitude + '&long=' + position.coords.longitude + '&limit=10', function(data) {
+            alert(JSON.stringify(data));
+        }).error(function(error) {
+                alert("this is an "+error.message);
+        });
+        
 	$.getJSON("http://www.starbucks.com/api/location.ashx?&features=&lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&limit=10",
 			  function(data) {
 				  var locations = [];
+                                  
 				  $.each(data, function() {
 					  locations.push(
 						  {
@@ -121,7 +130,7 @@ function getLocations(position, handler) {
 				  });
 				  handler(locations);
 			  }).error(function(error) {
-				  alert(error.message);
+				  alert("this "+error.message);
 			  });
 }
 
