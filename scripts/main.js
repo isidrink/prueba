@@ -1,17 +1,18 @@
 document.addEventListener("deviceready", onDeviceReady, false);
- 
+
 var mapElem,
 cachedLocations = [];
 
 // Apache Cordova is ready
 function onDeviceReady() {
 	// Prevent screen bounce
-     $("#addCardView").on("touchend", "#buttonAddNewCardView", function() {
+    
+	$("#addCardView").on("touchend", "#buttonAddNewCardView", function() {
 		addNewCard();
 	});
     
     getInitialCardsData();
-    //getInitialBeersData();
+
     // TODO: get all (where applicable) event handlers into the viewModels (hint: data-bind="click: handler")
    
 	$("#cardsView").on("touchend", ".deleteCardButton", function(e) {
@@ -45,8 +46,7 @@ function onDeviceReady() {
     });
     
 	cardsData.init();
-        getBeerList();
-        cardsData.cards.bind("change", writeIntoLocalStorage);
+	cardsData.cards.bind("change", writeIntoLocalStorage);
 }
 
 function activateAddButtonIfCardIsValid(cardId) {
@@ -69,19 +69,10 @@ function getPosition(handler) {
 }
 
 function getLocations(position, handler) {
-    
-       /* locations = [{address: "Muntaner. 239-253"+ ", " +"Barcelona,08029", 
-            latlng: new google.maps.LatLng(41.376229, 2.14924)}];
-     	
-
-        alert(JSON.stringify(locations));
-        handler(locations);*/
 	$.getJSON("http://www.starbucks.com/api/location.ashx?&features=&lat=" + position.coords.latitude + "&long=" + position.coords.longitude + "&limit=10",
 			  function(data) {
-				  //alert (data);
-                                  var locations = [];
-				  
-                                  $.each(data, function() {
+				  var locations = [];
+				  $.each(data, function() {
 					  locations.push(
 						  {
 						  address: this.WalkInAddressDisplayStrings[0] + ", " + this.WalkInAddressDisplayStrings[1], 
@@ -90,7 +81,7 @@ function getLocations(position, handler) {
 				  });
 				  handler(locations);
 			  }).error(function(error) {
-				  alert("this "+error.message);
+				  alert(error.message);
 			  });
 }
 
@@ -102,14 +93,7 @@ function getInitialCardsData(){
         localStorage.setItem("cards",initialCards);
     }
 }
-function getInitialBeersData(){
-    if(window.localStorage.getItem("beers")===null)
-    {
-        var beerData = new initialBeerData(),
-        initialBeers = beerData.getInitialBeersData();
-        localStorage.setItem("beers",initialBeers);
-    }
-}
+
 function storesShow(e) {
 	$("#storesNavigate").kendoMobileButtonGroup({
 		select: function() {
@@ -149,10 +133,9 @@ function storesShow(e) {
         
 			if (cachedLocations.length > 0) {
 				setStiresViews(cachedLocations);
-                               
 			}
 			else {
-            	 
+            	
 				getLocations(position, function(locations) {
 					cachedLocations = locations;
 					setStiresViews(locations);
@@ -162,63 +145,21 @@ function storesShow(e) {
 	};
 	iteration();
 }
-var announcementData =[];
-//var announcementData = [
-                { title: "Holiday Drinks Are Here", description: "Enjoy your favorite holiday drinks, like Pumpkin Spice Lattes.", url: "images/holiday.png" },
-                { title: "Register & Get Free Drinks", description: "Register any Jitterz card and start earning rewards like free drinks. Sign-up now.", url: "images/rewards.png" },
-                { title: "Cheers to Another Year", description: "Raise a cup of bold and spicy Jitterz Anniversary Blend.", url: "images/cheers.png" },
-            { title: "Hot Drinks Anytime", description: "Find and enjoy our, hot drinks anytime.", url: "images/hot-drink.png" },
-                { title: "Friend and Love", description: "Get more for your friends.Get Love.", url: "images/love-friend.png" },
-                { title: "Wide range of choice", description: "Raise a cup of bold and spicy Jitterz Anniversary Blend.", url: "images/best-coffee.png" }
-        /];
-var serviceURL = "http://www.adapptalo.com/test/services/";
-//var serviceURL = "http://localhost/test/services/";
 
-function getBeerList() {
-	// alert(announcementData.items);
-       
-        $.getJSON(serviceURL + 'getbeers.php', function(data) {
-		//$('#rewordsCardsList li').remove();
-                alert(JSON.stringify(data));
-                //alert(data);
-               employees = data.items;
-		//alert(employees);
-                $.each(employees, function(index, employee) {
-                                   /*initialCards.push({
-                                          cardNumber: "992552188", 
-                                          amount: 340,
-                                          bonusPoints: 34, 
-                                          expireDate: "2013/12/06"
-                                           
-                                  });   */  
-                    //$('#rewordsCardsList').append('<li>Pretty row '+index+'</li>');
-                       $('#rewordsCardsList').append('<li><a class="listReswardsCard clear" data-role="listview-link" href="rewardCard" data-cardId="${cardNumber}">'+
-                       '<div ><img class="cardPicture" id="pic" src="http://www.adapptalo.com/test/www/pics/beerimages/' + employee.IMAGEN + '"/></div>' +
-                
-                    '<div class="cardInformationContainer"><span>' + employee.CERVESA + '</span>' +
-                    '<span class="cardNumberText">   '+ employee.VOTACION +'</span>' +
-                    '<div class="expireDateText">'+ employee.CERVESERA +'</div></div><div class="clear"></div></a></li>');
-                
-			
-                        //$('#announcements-listview').append('<li>Pretty row '+index+'</li>');
-                        /*$('#rewordsCardsList').append('<li data-icon="false"><a class="ui-link-inherit" href="employeedetails.html?id=' + employee.B_Id + '">' +
-					'<img class="item-photo" id="pic" src="http://www.adapptalo.com/test/www/pics/beerimages/' + employee.IMAGEN + '"/>' +
-					'<h4 class="item-title">' + employee.CERVESA + '</h4>' +
-					'<pclass="item-info"><b>' + employee.CERVESERA + '</b>,' +
-					'<span class="ui-li-count bubble">' + employee.VOTACION + '</span></a></p></li>');*/
-                         
-		});
-		$('#rewordsCardsList').listview('refresh');
-              
-	});
-}
+var announcementData = [
+	{ title: "Holiday Drinks Are Here", description: "Enjoy your favorite holiday drinks, like Pumpkin Spice Lattes.", url: "images/holiday.png" },
+	{ title: "Register & Get Free Drinks", description: "Register any Jitterz card and start earning rewards like free drinks. Sign-up now.", url: "images/rewards.png" },
+	{ title: "Cheers to Another Year", description: "Raise a cup of bold and spicy Jitterz Anniversary Blend.", url: "images/cheers.png" },
+    { title: "Hot Drinks Anytime", description: "Find and enjoy our, hot drinks anytime.", url: "images/hot-drink.png" },
+	{ title: "Friend and Love", description: "Get more for your friends.Get Love.", url: "images/love-friend.png" },
+	{ title: "Wide range of choice", description: "Raise a cup of bold and spicy Jitterz Anniversary Blend.", url: "images/best-coffee.png" }
+];
+
 function announcementListViewTemplatesInit() {
-        //getBeerList();
 	$("#announcements-listview").kendoMobileListView({
 		dataSource: kendo.data.DataSource.create({ data: announcementData }),
 		template: $("#announcement-listview-template").html()
 	});
-        
 }
 
 function onGeolocationError(error) {
@@ -226,7 +167,6 @@ function onGeolocationError(error) {
 }
 
 function setStiresViews(locations) {
-    
 	var pinColor = "66CCFF";
 
 	/*var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
@@ -298,35 +238,10 @@ var cardsData = kendo.observable({
 	},
 	cards : []
 });
-var beersData = kendo.observable({
-	init:function() {
-		var i;
-		this._beerNumbers = {};
-        var beers=[];
-		if (window.localStorage.getItem("beers") !== null) {
-            beers = JSON.parse(window.localStorage.getItem("beers"));
-		}
-		for (i = 0; i < cards.length; i+=1) {
-			this._beerNumbers[beers[i].beerNumber] = i;
-		}
-		beersData.set("beers", beers);
-	},
-	beerNumbers: function(value) {
-		if (value) {
-			this._beerNumbers = value;
-		}
-		else {
-			return this._beerNumbers;
-		}
-	},
-	beers : []
-});
 
 function writeIntoLocalStorage(e) {
 	var dataToWrite = JSON.stringify(cardsData.cards);
 	window.localStorage.setItem("cards", dataToWrite);
-        var dataToWrite2 = JSON.stringify(beersData.beers);
-	window.localStorage.setItem("beers", dataToWrite2);
 }
 
 function focusCardNumber() {
