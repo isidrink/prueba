@@ -50,14 +50,15 @@ function onDeviceReady() {
         cardsData.cards.bind("change", writeIntoLocalStorage);
 }
 
-var serviceURL = "http://www.adapptalo.com/test/services/";
-//var serviceURL = "http://localhost/test/services/";
+//var serviceURL = "http://www.adapptalo.com/test/services/";
+var serviceURL = "http://localhost/test/services/";
 
 function getBeerList() {
 	// alert(announcementData.items);
        
         $.getJSON(serviceURL + 'getbeers.php', function(data) {
 		$('#announcements-listview li').remove();
+                //$('#rewordsCardsList li').remove();
                 //alert(JSON.stringify(data));
                 //alert(data);
                employees = data.items;
@@ -75,10 +76,9 @@ function getBeerList() {
                                         description: employee.CERVESERA,
                                         url: "http://www.adapptalo.com/test/www/pics/beerimages/" + employee.IMAGEN
                                 });*/   
-                    $('#rewordsCardsList li').remove();
-                    $('#rewordsCardsList').append('<li>Pretty row '+index+'</li>');
+                    $('#rewordsCardsList').append('<li><a class="listReswardsCard clear km-listview-link">'+employee.CERVESA +index+'</a></li>');
                     
-                    $('#announcements-listview').append('<li data-icon="true"><a class="listReswardsCard clear" data-role="listview-link" href="beerCard" data-cardId="${cardNumber}">'+
+                    $('#announcements-listview').append('<li data-icon="true"><a class="listReswardsCard clear km-listview-link" data-role="listview-link" href="rewardCard" data-cardId="${cardNumber}">'+
                        '<div ><img class="cardPicture" id="pic" src="http://www.adapptalo.com/test/www/pics/beerimages/' + employee.IMAGEN + '"/></div>' +
                 
                     '<div class="cardInformationContainer"><span>' + employee.CERVESA + '</span>' +
@@ -87,7 +87,7 @@ function getBeerList() {
                          
 		});
 		$('#announcements-listview').listview('refresh');
-              
+                 $('#rewordsCardsList').listview('refresh');
 	});
 }
 
