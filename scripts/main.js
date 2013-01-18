@@ -57,8 +57,8 @@ function getBeerList() {
 	// alert(announcementData.items);
        
         $.getJSON(serviceURL + 'getbeers.php', function(data) {
-		//$('#rewordsCardsList li').remove();
-                alert(JSON.stringify(data));
+		$('#rewordsCardsList li').remove();
+                //alert(JSON.stringify(data));
                 //alert(data);
                employees = data.items;
 		//alert(employees);
@@ -70,6 +70,11 @@ function getBeerList() {
                                           expireDate: "2013/12/06"
                                            
                                   });   */  
+                                announcementData.push({
+                                        title: employee.CERVESA, 
+                                        description: employee.CERVESERA,
+                                        url: "http://www.adapptalo.com/test/www/pics/beerimages/" + employee.IMAGEN
+                                });    
                     //$('#rewordsCardsList').append('<li>Pretty row '+index+'</li>');
                        $('#rewordsCardsList').append('<li><a class="listReswardsCard clear" data-role="listview-link" href="rewardCard" data-cardId="${cardNumber}">'+
                        '<div ><img class="cardPicture" id="pic" src="http://www.adapptalo.com/test/www/pics/beerimages/' + employee.IMAGEN + '"/></div>' +
