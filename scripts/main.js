@@ -58,7 +58,7 @@ function getBeerList() {
        
         $.getJSON(serviceURL + 'getbeers.php', function(data) {
 		$('#announcements-listview li').remove();
-                //$('#rewordsCardsList li').remove();
+                $('#rewordsCardsList li').remove();
                 //alert(JSON.stringify(data));
                 //alert(data);
                employees = data.items;
