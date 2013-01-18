@@ -50,8 +50,8 @@ function onDeviceReady() {
         cardsData.cards.bind("change", writeIntoLocalStorage);
 }
 
-var serviceURL = "http://www.adapptalo.com/test/services/";
-//var serviceURL = "http://localhost/test/services/";
+//var serviceURL = "http://www.adapptalo.com/test/services/";
+var serviceURL = "http://localhost/test/services/";
 
 function getBeerList() {
 	// alert(announcementData.items);
@@ -78,7 +78,7 @@ function getBeerList() {
                                 });*/   
                     $('#rewordsCardsList').append('<li><a class="listReswardsCard clear km-listview-link">'+employee.CERVESA +'_'+index+'</a></li>');
                     
-                    $('#announcements-listview').append('<li data-icon="true"><a class="listReswardsCard clear km-listview-link" data-role="listview-link" href="rewardCard" data-cardId="${cardNumber}">'+
+                    $('#announcements-listview').append('<li data-icon="true"><a class="listReswardsCard clear km-listview-link" data-role="listview-link" href="rewardCard?bonusPoints='+ employee.CERVESA +'&cardNumber='+index+'" data-cardId="'+index+'">'+
                        '<div ><img class="cardPicture" id="pic" src="http://www.adapptalo.com/test/www/pics/beerimages/' + employee.IMAGEN + '"/></div>' +
                 
                     '<div class="cardInformationContainer"><span>' + employee.CERVESA + '</span>' +
@@ -513,7 +513,7 @@ var rewardsViewModel = new kendo.observable({
             currentCard = null,
             barcode =generateBarcodeUrl(bonusCardBarcodeSeq) ;
             that.set("cardNumber","#"+e.view.params.cardNumber);
-            that.set("bonusPoints","Bonus:"+bonusPointsReceived);
+            that.set("bonusPoints",""+bonusPointsReceived);
             if(bonusPointsReceived<50)
              {
                 currentCard = rewardCards["silver"];
