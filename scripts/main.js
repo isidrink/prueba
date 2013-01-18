@@ -74,8 +74,9 @@ function getBeerList() {
                                         title: employee.CERVESA, 
                                         description: employee.CERVESERA,
                                         url: "http://www.adapptalo.com/test/www/pics/beerimages/" + employee.IMAGEN
-                                }); */   
-                    //$('#rewordsCardsList').append('<li>Pretty row '+index+'</li>');
+                                });*/   
+                    $('#rewordsCardsList').append('<li>Pretty row '+index+'</li>');
+                    
                     $('#announcements-listview').append('<li><a class="listReswardsCard clear" data-role="listview-link" href="rewardCard" data-cardId="${cardNumber}">'+
                        '<div ><img class="cardPicture" id="pic" src="http://www.adapptalo.com/test/www/pics/beerimages/' + employee.IMAGEN + '"/></div>' +
                 
@@ -142,6 +143,14 @@ function getInitialCardsData(){
         localStorage.setItem("cards",initialCards);
     }
 }
+var beaches = [
+  ['Bondi Beach', -33.890542, 151.274856, 4],
+  ['Coogee Beach', -33.923036, 151.259052, 5],
+  ['Cronulla Beach', -34.028249, 151.157507, 3],
+  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+  ['Maroubra Beach', -33.950198, 151.259302, 1]
+];
+
 
 function storesShow(e) {
 	$("#storesNavigate").kendoMobileButtonGroup({
@@ -161,6 +170,7 @@ function storesShow(e) {
     
     
 	var iteration = function() {
+            
 		getPosition(function(position) {
 			// Use Google API to get the location data for the current coordinates
 			var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -173,13 +183,58 @@ function storesShow(e) {
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			mapElem = new google.maps.Map(document.getElementById("map"), myOptions);
+                        
 			var marker = new google.maps.Marker({
 				position: latlng,
 				map: mapElem,
 				title: "Your Location",
                 zIndex:google.maps.Marker.MAX_ZINDEX
 			});
-        
+/*                        
+                        var pimImage = new google.maps.MarkerImage("../images/cofeeCup-sprite.png",
+                        new google.maps.Size(49, 49),
+                        new google.maps.Point(0,202),
+                        new google.maps.Point(0, 32));
+
+                        var shape = {
+                            coord: [1, 1, 1, 20, 18, 20, 18 , 1],
+                            type: 'poly'
+                        };
+                        //for (var i = 0; i < locations.length; i++) {
+                          var myLatLng = new google.maps.LatLng(41.376293,2.149218);
+                          var marker = new google.maps.Marker({
+                              position: myLatLng,
+                              map: mapElem,
+                              icon: image,
+                              shape: shape,
+                              title: "Barceloa Beer Festival",
+                              zIndex: google.maps.Marker.MAX_ZINDEX
+                          });
+                        //}
+*/
+                        // Add 5 markers to the map at random locations
+                        var southWest = new google.maps.LatLng(-31.203405,125.244141);
+                        var northEast = new google.maps.LatLng(-25.363882,131.044922);
+                        var bounds = new google.maps.LatLngBounds(southWest,northEast);
+                        //mapElem.fitBounds(bounds);
+                        var lngSpan = northEast.lng() - southWest.lng();
+                        var latSpan = northEast.lat() - southWest.lat();
+                        //for (var i = 0; i < 5; i++) {
+                           var location = new google.maps.LatLng(41.376293,2.149218);
+                          /*var location = new google.maps.LatLng(southWest.lat() + latSpan * Math.random(),
+                              southWest.lng() + lngSpan * Math.random());*/
+                          var marker = new google.maps.Marker({
+                              position: location,
+                              title: "Barceloa Beer Festival",
+                              map: mapElem
+                          });
+                          var j = i + 1;
+                          marker.setTitle(j.toString());
+                          attachSecretMessage(marker, i);
+                        //}
+
+
+                        
 			if (cachedLocations.length > 0) {
 				setStiresViews(cachedLocations);
 			}
@@ -193,6 +248,16 @@ function storesShow(e) {
 		});
 	};
 	iteration();
+}
+function attachSecretMessage(marker, number) {
+  var message = ["This","is","the","secret","message"];
+  var infowindow = new google.maps.InfoWindow(
+      { content: message[number],
+        size: new google.maps.Size(50,50)
+      });
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+  });
 }
 var announcementData = [];
 /*var announcementData = [
