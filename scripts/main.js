@@ -223,7 +223,7 @@ function storesShow(e) {
                         //}
 
 */
-                        
+                        /*
 			if (cachedLocations.length > 0) {
 				setStiresViews(cachedLocations);
 			}
@@ -233,7 +233,7 @@ function storesShow(e) {
 					cachedLocations = locations;
 					setStiresViews(locations);
 				});
-			}
+			}*/
 		});
 	};
 	iteration();
