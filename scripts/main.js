@@ -76,7 +76,7 @@ function getBeerList() {
                                         description: employee.CERVESERA,
                                         url: "http://www.adapptalo.com/test/www/pics/beerimages/" + employee.IMAGEN
                                 });*/   
-                    $('#rewordsCardsList').append('<li><a class="listReswardsCard clear km-listview-link">'+employee.CERVESA +index+'</a></li>');
+                    $('#rewordsCardsList').append('<li><a class="listReswardsCard clear km-listview-link">'+employee.CERVESA +'_'+index+'</a></li>');
                     
                     $('#announcements-listview').append('<li data-icon="true"><a class="listReswardsCard clear km-listview-link" data-role="listview-link" href="rewardCard" data-cardId="${cardNumber}">'+
                        '<div ><img class="cardPicture" id="pic" src="http://www.adapptalo.com/test/www/pics/beerimages/' + employee.IMAGEN + '"/></div>' +
