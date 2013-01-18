@@ -78,7 +78,7 @@ function getBeerList() {
                     $('#rewordsCardsList li').remove();
                     $('#rewordsCardsList').append('<li>Pretty row '+index+'</li>');
                     
-                    $('#announcements-listview').append('<li><a class="listReswardsCard clear" data-role="listview-link" href="beerCard" data-cardId="${cardNumber}">'+
+                    $('#announcements-listview').append('<li data-icon="true"><a class="listReswardsCard clear" data-role="listview-link" href="beerCard" data-cardId="${cardNumber}">'+
                        '<div ><img class="cardPicture" id="pic" src="http://www.adapptalo.com/test/www/pics/beerimages/' + employee.IMAGEN + '"/></div>' +
                 
                     '<div class="cardInformationContainer"><span>' + employee.CERVESA + '</span>' +
