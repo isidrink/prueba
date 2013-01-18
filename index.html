@@ -37,7 +37,7 @@
     </head>
     <body>
         <!-- HOME page -->
-        <div data-role="view" id="home" data-title="Jitterz" data-init="announcementListViewTemplatesInit">
+        <div data-role="view" id="home" data-title="BeerList" data-init="announcementListViewTemplatesInit">
 			<div data-role="content">
                 <div id="announcements">
                     <ul data-role="listview" id="announcements-listview" 
@@ -47,6 +47,28 @@
             </div>
         </div>
          
+        
+        <div data-role="view" id="beerCard" data-style="inset"  data-title="Reward Card" data-show="rewardCardShow" data-model="rewardsViewModel">
+			<header data-role="header" data-id="jitterz-default-header">
+				<div data-role="navbar">
+					<a class="nav-button" data-role="backbutton" data-align="left">Back</a>
+					<span data-role="view-title"></span>
+				</div>
+			</header>
+			<div id="singleCardContainer" class="clear">
+				<div id="rewardCardFront" class="cardStyle" >
+					
+				</div>
+				<div id="rewardCardBack" class="cardStyle clear gold">
+					<img id="barcodeImage" data-bind='attr: {src:barcodeURL}' alt="Shop Card Id"/>
+				</div>
+			</div>
+			<div class="clear">
+				<div>
+					<ul id="rewardsList" data-role="listview" data-style="inset" data-bind="source: rewards" data-template="rewardsListTemplate"></ul>
+				</div>
+			</div>
+		</div>
         <!-- Templates -->
         <script type="text/x-kendo-template" id="rewordsCardsList-template">
             <a class="listReswardsCard clear" data-role="listview-link" href='rewardCard?bonusPoints=${bonusPoints}&cardNumber=${cardNumber}' data-cardId="${cardNumber}">
@@ -255,7 +277,7 @@
 							<li>
 								Map
 							</li>
-							<li>
+							<li class="disabled">
 								List
 							</li>
 						</ul>
