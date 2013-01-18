@@ -57,7 +57,7 @@ function getBeerList() {
 	// alert(announcementData.items);
        
         $.getJSON(serviceURL + 'getbeers.php', function(data) {
-		$('#rewordsCardsList li').remove();
+		$('#rewardsList li').remove();
                 //alert(JSON.stringify(data));
                 //alert(data);
                employees = data.items;
@@ -70,13 +70,12 @@ function getBeerList() {
                                           expireDate: "2013/12/06"
                                            
                                   });   */  
-                                announcementData.push({
+                                /*announcementData.push({
                                         title: employee.CERVESA, 
                                         description: employee.CERVESERA,
                                         url: "http://www.adapptalo.com/test/www/pics/beerimages/" + employee.IMAGEN
-                                });    
-                    //$('#rewordsCardsList').append('<li>Pretty row '+index+'</li>');
-                       $('#rewordsCardsList').append('<li><a class="listReswardsCard clear" data-role="listview-link" href="rewardCard" data-cardId="${cardNumber}">'+
+                                }); */   
+                       $('#rewardsList').append('<li><a class="listReswardsCard clear" data-role="listview-link" href="rewardCard" data-cardId="${cardNumber}">'+
                        '<div ><img class="cardPicture" id="pic" src="http://www.adapptalo.com/test/www/pics/beerimages/' + employee.IMAGEN + '"/></div>' +
                 
                     '<div class="cardInformationContainer"><span>' + employee.CERVESA + '</span>' +
@@ -84,7 +83,7 @@ function getBeerList() {
                     '<div class="expireDateText">'+ employee.CERVESERA +'</div></div><div class="clear"></div></a></li>');
                          
 		});
-		$('#rewordsCardsList').listview('refresh');
+		$('#rewardsList').listview('refresh');
               
 	});
 }
@@ -185,7 +184,7 @@ function storesShow(e) {
 	};
 	iteration();
 }
-
+//var announcementData = [];
 var announcementData = [
 	{ title: "Holiday Drinks Are Here", description: "Enjoy your favorite holiday drinks, like Pumpkin Spice Lattes.", url: "images/holiday.png" },
 	{ title: "Register & Get Free Drinks", description: "Register any Jitterz card and start earning rewards like free drinks. Sign-up now.", url: "images/rewards.png" },
