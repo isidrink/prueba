@@ -130,11 +130,20 @@
                     <span data-role="view-title"></span>
 				</div>
 			</header>
+                      <div id="cardsViewContent" data-role="content">
+				<!-- List of cards -->
+                <ul class="cardListWrapper" data-role="listview" data-style="inset" data-type="group">
+                    <li>
+                        <ul id="cardsList" data-role="listview" data-bind="source: cards" data-template="cardsListTemplate">
+                        </ul>
+                    </li>
+                </ul>
+			</div>
             
 		</div>
         
         <!-- ADD Card View -->
-        <div data-role="view" id="addCardView" data-title="Add Beer" data-show="focusCardNumber">
+        <div data-role="view" id="addCardView" data-title="Add Card" data-show="focusCardNumber">
 			<div data-role="header">
 				<div data-role="navbar">
 					<a href="#cardsView" data-role="button" data-align="left">Cancel</a>
@@ -142,7 +151,20 @@
                     <a data-role="button" data-align="right" id="buttonAddNewCardView" class="isCardValid">Add</a>
 				</div>
 			</div>
-           
+            <div data-role="content">
+                <div class="addCardLogo clear">
+                    <div class="cardPicture">
+                    </div>
+                    <span class="addCardLogoText">Create New Jitterz Card</span>
+                </div>
+                <ul class="addNewCardWrapper" data-role="listview" data-style="inset">
+    				<li>
+    					<label for="cardNumberField">Card Number </label>
+    					<input type="number" id="cardNumberField" min="3" max="10" maxlength="10" maxlength="9"/>
+    				</li>
+    			</ul>
+    			<div id="addNewCardErrorLog"></div>
+            </div>
 		</div>
         
         <!-- Single Card page -->

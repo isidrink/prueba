@@ -47,11 +47,13 @@ function onDeviceReady() {
     
 	cardsData.init();
         getBeerList();
+       // alert ( JSON.stringify(cardsData.cards));
+	
         cardsData.cards.bind("change", writeIntoLocalStorage);
 }
 
-var serviceURL = "http://www.adapptalo.com/test/services/";
-//var serviceURL = "http://localhost/test/services/";
+//var serviceURL = "http://www.adapptalo.com/test/services/";
+var serviceURL = "http://localhost/test/services/";
 
 function getBeerList() {
 	// alert(announcementData.items);
@@ -75,7 +77,8 @@ function getBeerList() {
                                         title: employee.CERVESA, 
                                         description: employee.CERVESERA,
                                         url: "http://www.adapptalo.com/test/www/pics/beerimages/" + employee.IMAGEN
-                                });*/   
+                                });*/  
+                    index =index+1;
                     $('#rewordsCardsList').append('<li><a class="listReswardsCard clear km-listview-link">'+employee.CERVESA +'_'+index+'</a></li>');
                     
                     $('#announcements-listview').append('<li data-icon="true"><a class="listReswardsCard clear km-listview-link" data-role="listview-link" href="rewardCard?bonusPoints='+ employee.CERVESA +'&cardNumber='+index+'" data-cardId="'+index+'">'+
@@ -326,11 +329,12 @@ var cardsData = kendo.observable({
         var cards=[];
 		if (window.localStorage.getItem("cards") !== null) {
             cards = JSON.parse(window.localStorage.getItem("cards"));
-		}
+           	}
 		for (i = 0; i < cards.length; i+=1) {
 			this._cardNumbers[cards[i].cardNumber] = i;
 		}
 		cardsData.set("cards", cards);
+                
 	},
 	cardNumbers: function(value) {
 		if (value) {
@@ -344,7 +348,7 @@ var cardsData = kendo.observable({
 });
 
 function writeIntoLocalStorage(e) {
-	var dataToWrite = JSON.stringify(cardsData.cards);
+        var dataToWrite = JSON.stringify(cardsData.cards);
 	window.localStorage.setItem("cards", dataToWrite);
 }
 
@@ -398,13 +402,14 @@ function appendCardFadeEffect($cardFront, $cardBack) {
 		$(e.currentTarget).fadeOut(500, "linear", function() {
 			$cardBack.fadeIn(500, "linear");
 		});
-
+                //alert ("poner en del localstorage!!");
 	});
     
 	$cardBack.click(function(e) {
 		$(e.currentTarget).fadeOut(500, "linear", function() {
 			$cardFront.fadeIn(500, "linear");
 		});
+                  //alert ("quitar del localstorage!!");
 	});
 }
 
