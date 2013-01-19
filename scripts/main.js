@@ -47,13 +47,13 @@ function onDeviceReady() {
     
 	cardsData.init();
         getBeerList();
-       // alert ( JSON.stringify(cardsData.cards));
+        //alert ( JSON.stringify(cardsData.cards));
 	
         cardsData.cards.bind("change", writeIntoLocalStorage);
 }
 
-var serviceURL = "http://www.adapptalo.com/test/services/";
-//var serviceURL = "http://localhost/test/services/";
+//var serviceURL = "http://www.adapptalo.com/test/services/";
+var serviceURL = "http://localhost/test/services/";
 
 function getBeerList() {
 	// alert(announcementData.items);
@@ -402,7 +402,20 @@ function appendCardFadeEffect($cardFront, $cardBack) {
 		$(e.currentTarget).fadeOut(500, "linear", function() {
 			$cardBack.fadeIn(500, "linear");
 		});
-                //alert ("poner en del localstorage!!");
+                var cardToAdd2 = {
+			cardNumber : "461253932",
+			amount: 350,
+			bonusPoints: 44,
+            expireDate: "2013/12/06"
+		}
+        alert ("poner en del localstorage!!");
+
+		var positionAdded2 = cardsData.cards.push(cardToAdd2) - 1;
+		cardsData.cardNumbers()[cardNumberValue] = positionAdded2;
+                
+                app.navigate("#cardsView");
+                
+        
 	});
     
 	$cardBack.click(function(e) {

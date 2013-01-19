@@ -2,7 +2,7 @@ var initialCardData = function() {
 };
 
 initialCardData.prototype = function() {
-	var initialCards = [{
+	/*var initialCards = [{
         "cardNumber":"461253932",
         "amount":20,
         "bonusPoints":60,
@@ -17,8 +17,8 @@ initialCardData.prototype = function() {
         "amount":104,
         "bonusPoints":56,
         "expireDate":"2014/11/24"
-    }],
-//var initialCards =[],
+    }],*/
+var initialCards =[],
 	getInitialCardsData = function() {
 		return JSON.stringify(initialCards);
 	};
