@@ -1,5 +1,9 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
+var serviceURL = "http://www.adapptalo.com/test/services/";
+//var serviceURL = "http://localhost/test/services/";
+var announcementData = [];
+
 var mapElem,
 cachedLocations = [];
 
@@ -46,14 +50,54 @@ function onDeviceReady() {
     });
     
 	cardsData.init();
-        getBeerList();
-        //alert ( JSON.stringify(cardsData.cards));
+        
+       //alert ( JSON.stringify("first-->"+announcementData));
+      getBeerList2( function(announcementData) {
+					 alert ("que funcione!!");
+      
+				});
+       //alert ( JSON.stringify("finally-->"+announcementData));
+         
 	
         cardsData.cards.bind("change", writeIntoLocalStorage);
 }
 
-var serviceURL = "http://www.adapptalo.com/test/services/";
-//var serviceURL = "http://localhost/test/services/";
+function getBeerList2(handler) {
+	 $.getJSON(serviceURL + 'getbeers.php',
+			  function(data) {
+				  var announcementData = [];
+                                  
+				  $.each(data, function() {
+					  announcementData.push(
+						  {
+                                                    title: "Holiday Drinks Are Here", 
+                                                    description: "Enjoy your favorite holiday drinks, like Pumpkin Spice Lattes.", 
+                                                    url: "images/holiday.png" 
+					  });                
+				  });
+				  handler(announcementData);
+			  }).error(function(error) {
+				  alert("this2 "+error.message);
+			  });
+                          
+        /*                  
+        $.getJSON(serviceURL + 'getbeers.php', function(data) {
+		//alert(JSON.stringify(data));
+                employees = data.items;
+                $.each(employees, function(index, employee) {
+                    //alert(index + " --> " + JSON.stringify(employee));
+                   announcementData.push({ 
+                                            title: "Holiday Drinks Are Here", 
+                                            description: "Enjoy your favorite holiday drinks, like Pumpkin Spice Lattes.", 
+                                            url: "images/holiday.png" 
+                                        });
+         
+		});
+	
+	});*/
+}
+
+
 
 function getBeerList() {
 	// alert(announcementData.items);
@@ -78,6 +122,7 @@ function getBeerList() {
                                         description: employee.CERVESERA,
                                         url: "http://www.adapptalo.com/test/www/pics/beerimages/" + employee.IMAGEN
                                 });*/  
+                    
                     index =index+1;
                     $('#rewordsCardsList').append('<li><a class="listReswardsCard clear km-listview-link">'+employee.CERVESA +'_'+index+'</a></li>');
                     
@@ -130,6 +175,7 @@ function getLocations(position, handler) {
 			  }).error(function(error) {
 				  alert("this "+error.message);
 			  });
+                         
 }
 
 function getInitialCardsData(){
@@ -227,16 +273,19 @@ function storesShow(e) {
                         //}
 
 */
-                        /*
-			if (cachedLocations.length > 0) {
+                       
+			/*if (cachedLocations.length > 0) {
 				setStiresViews(cachedLocations);
+                               
 			}
 			else {
             	
 				getLocations(position, function(locations) {
 					cachedLocations = locations;
 					setStiresViews(locations);
+                                        
 				});
+                                 
 			}*/
 		});
 	};
@@ -252,7 +301,7 @@ function attachSecretMessage(marker, number) {
     infowindow.open(map,marker);
   });
 }
-var announcementData = [];
+
 /*var announcementData = [
 	{ title: "Holiday Drinks Are Here", description: "Enjoy your favorite holiday drinks, like Pumpkin Spice Lattes.", url: "images/holiday.png" },
 	{ title: "Register & Get Free Drinks", description: "Register any Jitterz card and start earning rewards like free drinks. Sign-up now.", url: "images/rewards.png" },
@@ -260,10 +309,11 @@ var announcementData = [];
     { title: "Hot Drinks Anytime", description: "Find and enjoy our, hot drinks anytime.", url: "images/hot-drink.png" },
 	{ title: "Friend and Love", description: "Get more for your friends.Get Love.", url: "images/love-friend.png" },
 	{ title: "Wide range of choice", description: "Raise a cup of bold and spicy Jitterz Anniversary Blend.", url: "images/best-coffee.png" }
-];*/
+];
+alert(JSON.stringify(announcementData));*/
 
 function announcementListViewTemplatesInit() {
-	$("#announcements-listview").kendoMobileListView({
+        $("#announcements-listview").kendoMobileListView({
 		dataSource: kendo.data.DataSource.create({ data: announcementData }),
 		template: $("#announcement-listview-template").html()
 	});
@@ -406,9 +456,9 @@ function appendCardFadeEffect($cardFront, $cardBack) {
 			cardNumber : "461253932",
 			amount: 350,
 			bonusPoints: 44,
-            expireDate: "2013/12/06"
+                        expireDate: "2013/12/06"
 		}
-        alert ("poner en del localstorage!!");
+        //alert ("poner en del localstorage!!");
 
 		var positionAdded2 = cardsData.cards.push(cardToAdd2) - 1;
 		cardsData.cardNumbers()[cardNumberValue] = positionAdded2;
