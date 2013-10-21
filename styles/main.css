@@ -392,7 +392,7 @@ input[type="text"], input[type="password"] {
     display: block;
 }
 
-.km-ios #about-view h1, .km-ios #about-view p { color: white; }
+.km-ios #about-view h1, .km-ios #about-view p { color: #000; }
 
 #about-view p { text-align: center; }
 
@@ -404,7 +404,7 @@ input[type="text"], input[type="password"] {
     #about-view .footer-images img {
         width: 80%;
         background: #fff;
-        padding: 2px 2px 2px 1px;
+        padding: 5px 20px 10px;
         border-radius: 5px;
     }
 

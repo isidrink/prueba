@@ -23,10 +23,10 @@ define(["jQuery", "utils", "cart"], function ($, utils, cart) {
 
         viewModel: {
             openKendoWeb: function (clickEvt) {
-                _openExternal(clickEvt, 'http://www.barcelonabeerfestival.com/');
+                _openExternal(clickEvt, 'http://www.kendoui.com');
             },
             openSource: function (clickEvt) {
-                _openExternal(clickEvt, 'http://www.adapptalo.es/');
+                _openExternal(clickEvt, 'http://www.github.com/telerik/kendo-mobile-music-store');
             }
         }
     };
